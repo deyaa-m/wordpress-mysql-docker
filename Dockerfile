@@ -6,7 +6,7 @@ FROM mysql:5.7
 #  mysql -u root createddatabase < /tmp/backup.sql
 copy ./backup.sql /docker-entrypoint-initdb.d
 ENV MYSQL_ROOT_PASSWORD=helloworld
-ENV MYSQL_USER=userone
+ENV MYSQL_USER=user
 ENV MYSQL_PASSWORD=helloworld
-ENV MYSQL_DATABASE=createddatabase
+ENV MYSQL_DATABASE= db
 
