@@ -2,6 +2,7 @@ version: '3'
 
 services:
    db:
+     container_name : db
      build : ./
      volumes:
        - ./coco:/var/lib/mysql
@@ -10,21 +11,22 @@ services:
        - "3306:3306"
      environment:
        MYSQL_ROOT_PASSWORD: helloworld
-       MYSQL_DATABASE: createddatabase
-       MYSQL_USER: userone
+       MYSQL_DATABASE: db
+       MYSQL_USER: user
        MYSQL_PASSWORD: helloworld
 
-   wordpress:
+   wordpress : 
      depends_on:
        - db
+     container_name : wp
      image: wordpress:latest
      volumes : 
-       - ./:/var/www/html
+       - ./wp-project:/var/www/html
      ports:
        - "8080:80"
      restart: always
      environment:
        WORDPRESS_DB_HOST: db:3306
-       WORDPRESS_DB_USER: userone
+       WORDPRESS_DB_USER: user
        WORDPRESS_DB_PASSWORD: helloworld
-       WORDPRESS_DB_NAME: createddatabase
+       WORDPRESS_DB_NAME: db
